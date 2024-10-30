@@ -3,9 +3,14 @@
 namespace Foxws\Algos\Algos;
 
 use Foxws\Algos\Enums\Status;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Support\Traits\Macroable;
 
-class Result
+class Result implements Arrayable, Jsonable
 {
+    use Macroable;
+
     public Algo $algo;
 
     public ?Status $status = null;
@@ -55,5 +60,26 @@ class Result
         $this->meta[$key] = $value;
 
         return $this;
+    }
+
+    public function merge(array $meta): static
+    {
+        $this->meta = array_merge_recursive($this->meta, $meta);
+
+        return $this;
+    }
+
+    public function toJson($options = 0): string
+    {
+        return json_encode($this->toArray(), $options);
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'status' => $this->status,
+            'message' => $this->message,
+            'meta' => $this->meta,
+        ];
     }
 }
