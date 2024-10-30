@@ -5,12 +5,12 @@ namespace Foxws\LaravelAlgos\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Foxws\LaravelAlgos\LaravelAlgos
+ * @see \Foxws\Algos\Algos
  */
-class LaravelAlgos extends Facade
+class Algos extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \Foxws\LaravelAlgos\LaravelAlgos::class;
+        return \Foxws\Algos\Algos::class;
     }
 }
