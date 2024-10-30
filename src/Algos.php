@@ -48,7 +48,7 @@ class Algos
     protected function guardAgainstDuplicateAlgoNames(): void
     {
         $duplicateAlgoNames = collect($this->algos)
-            ->map(fn(Algo $algo) => $algo->getName())
+            ->map(fn (Algo $algo) => $algo->getName())
             ->duplicates();
 
         if ($duplicateAlgoNames->isNotEmpty()) {
