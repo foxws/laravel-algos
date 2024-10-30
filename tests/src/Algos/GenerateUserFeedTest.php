@@ -24,3 +24,9 @@ it('will succeed with message', function () {
 
     expect($algo->message)->toBe('Feed generated successfully');
 });
+
+it('will succeed with meta data', function () {
+    $algo = GenerateUserFeed::make()->model($this->user)->run();
+
+    expect($algo->meta['hash'])->toBeString('01HRDBNHHCKNW2AK4Z29SN82T9');
+});

@@ -8,6 +8,7 @@ use Foxws\Algos\Tests\Models\Post;
 use Foxws\Algos\Tests\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Symfony\Component\Uid\Ulid;
 
 class GenerateUserFeed extends Algo
 {
@@ -44,6 +45,8 @@ class GenerateUserFeed extends Algo
 
     protected function generateUniqueId(): string
     {
-        return Str::ulid();
+        return Str::createUlidsUsing(function () {
+            return new Ulid('01HRDBNHHCKNW2AK4Z29SN82T9');
+        });
     }
 }
