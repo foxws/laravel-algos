@@ -18,7 +18,7 @@ class Algos
     protected array $algos = [];
 
     /** @param  array<int, Algo> $algos */
-    public function algos(array $algos): self
+    public function algos(array $algos): static
     {
         $this->ensureAlgoInstances($algos);
 
@@ -61,7 +61,7 @@ class Algos
             );
     }
 
-    public function clearAlgos(): self
+    public function clearAlgos(): static
     {
         $this->algos = [];
 
