@@ -26,8 +26,6 @@ php artisan vendor:publish --tag="algos-config"
 Generate an `Algo` class:
 
 ```php
-<?php
-
 use Foxws\Algos\Algos\Algo;
 use Foxws\Algos\Algos\Result;
 use Foxws\Algos\Tests\Models\Post;

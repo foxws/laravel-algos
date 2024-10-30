@@ -1,0 +1,18 @@
+<?php
+
+namespace {{ namespace }};
+
+use Foxws\Algos\Algos\Algo;
+use Foxws\Algos\Algos\Result;
+
+class {{ class }} extends Algo
+{
+    public function handle(): Result
+    {
+        if (! auth()->check()) {
+            return $this->skipped();
+        }
+
+        return $this->success();
+    }
+}
