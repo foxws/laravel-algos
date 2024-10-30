@@ -2,7 +2,6 @@
 
 namespace Foxws\Algos;
 
-
 class Algo
 {
     //
