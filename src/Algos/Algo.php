@@ -61,11 +61,6 @@ abstract class Algo implements Arrayable, Jsonable, Stringable
         return Str::of($baseName)->beforeLast('Algo');
     }
 
-    public function __toString(): string
-    {
-        return $this->getName();
-    }
-
     public function toArray(): array
     {
         return [];
@@ -74,5 +69,10 @@ abstract class Algo implements Arrayable, Jsonable, Stringable
     public function toJson($options = 0): string
     {
         return json_encode($this->toArray(), $options);
+    }
+
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 }
