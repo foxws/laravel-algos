@@ -26,7 +26,7 @@ class GenerateUserFeed extends Algo
 
         $this->sendBroadcast($hash);
 
-        return $result->success();
+        return $result->success('Feed generated successfully');
     }
 
     public function model(User $user): self
