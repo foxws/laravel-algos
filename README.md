@@ -23,7 +23,7 @@ php artisan vendor:publish --tag="algos-config"
 
 ## Usage
 
-Generate an `Algo` class:
+Generate an `Algo` class (you may also use `artisan make:algo MyAlgo`:
 
 ```php
 use Foxws\Algos\Algos\Algo;
@@ -39,7 +39,9 @@ class GenerateUserFeed extends Algo
 
     public function handle(): Result
     {
-        $hash = cache()->set(
+        $hash = $this->generateUniqueId();
+
+        cache()->set(
             $this->generateUniqueId(),
             ['ids' => (array) $this->getCollection()],
             now()->addMinutes(10),
