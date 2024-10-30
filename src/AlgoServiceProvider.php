@@ -5,7 +5,7 @@ namespace Foxws\Algos;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class AlgosServiceProvider extends PackageServiceProvider
+class AlgoServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,6 +16,6 @@ class AlgosServiceProvider extends PackageServiceProvider
 
     public function packageRegistered(): void
     {
-        $this->app->bind(Algos::class);
+        $this->app->bind(Algo::class);
     }
 }

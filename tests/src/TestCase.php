@@ -2,7 +2,7 @@
 
 namespace Foxws\Algos\Tests;
 
-use Foxws\Algos\AlgosServiceProvider;
+use Foxws\Algos\AlgoServiceProvider;
 use Foxws\ModelCache\ModelCacheServiceProvider;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -37,7 +37,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            AlgosServiceProvider::class,
+            AlgoServiceProvider::class,
             ModelCacheServiceProvider::class,
         ];
     }

@@ -4,6 +4,7 @@ namespace Foxws\Algos\Tests\TestClasses;
 
 use Foxws\Algos\Algos\Algo;
 use Foxws\Algos\Algos\Result;
+use Foxws\Algos\Tests\Models\Post;
 use Foxws\Algos\Tests\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Broadcast;
@@ -11,24 +12,33 @@ use Illuminate\Support\Str;
 
 class GenerateUserFeed extends Algo
 {
-    public function handle(User $user): Result
+    protected ?User $user = null;
+
+    public function handle(): Result
     {
         $result = Result::make();
 
-        $hash = $user->modelCache(
+        $hash = $this->user->modelCache(
             $this->generateUniqueId(),
             ['ids' => (array) $this->getCollection()],
-            now()->addMinutes(10)
+            now()->addMinutes(10),
         );
 
-        $this->sendBroadcast($user, $hash);
+        $this->sendBroadcast($hash);
 
         return $result->success();
     }
 
+    public function forUser(User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
     protected function getCollection(): Collection
     {
-        return User::query()
+        return Post::query()
             ->select('id')
             ->inRandomOrder()
             ->take(5)
@@ -40,8 +50,10 @@ class GenerateUserFeed extends Algo
         return Str::ulid();
     }
 
-    protected function sendBroadcast(User $user, string $hash): void
+    protected function sendBroadcast(string $hash): void
     {
-        Broadcast::broadcast(['user.'.$user->getKey()], 'FeedGenerated', ['hash' => $hash]);
+        Broadcast::broadcast(['user.'.$this->user->getKey()], 'FeedGenerated', [
+            'hash' => $hash,
+        ]);
     }
 }

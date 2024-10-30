@@ -3,36 +3,41 @@
 namespace Foxws\Algos\Algos;
 
 use Foxws\Algos\Enums\Status;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Stringable;
 
-/**
- * @method Result handle()
- */
-abstract class Algo implements Arrayable, Jsonable, Stringable
+abstract class Algo implements Stringable
 {
-    use Conditionable { unless as doUnless; }
+    use Conditionable;
     use Macroable;
 
     protected ?string $name = null;
 
     protected ?string $label = null;
 
-    /** @var array<bool|callable(): bool> */
-    protected array $shouldRun = [];
+    abstract public function handle(): Result;
 
     public static function make(): static
     {
         return app(static::class);
     }
 
-    public function run(mixed ...$arguments): Result
+    public static function run(): mixed
     {
-        return $this->handle(...$arguments);
+        return static::make()->handle();
+    }
+
+    public static function runIf(bool $boolean): mixed
+    {
+        return $boolean ? static::run() : new Fluent;
+    }
+
+    public static function runUnless(bool $boolean): mixed
+    {
+        return static::runIf(! $boolean);
     }
 
     public function name(string $name): static
@@ -71,51 +76,14 @@ abstract class Algo implements Arrayable, Jsonable, Stringable
         return Str::of($baseName)->beforeLast('Algo');
     }
 
-    public function getRunConditions(): array
-    {
-        return $this->shouldRun;
-    }
-
-    public function shouldRun(): bool
-    {
-        foreach ($this->shouldRun as $shouldRun) {
-            $shouldRun = is_callable($shouldRun) ? $shouldRun() : $shouldRun;
-
-            if (! $shouldRun) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public function if(bool|callable $condition): static
-    {
-        $this->shouldRun[] = $condition;
-
-        return $this;
-    }
-
-    public function unless(bool|callable $condition): static
-    {
-        $this->shouldRun[] = is_callable($condition) ? fn () => ! $condition() : ! $condition;
-
-        return $this;
-    }
-
     public function markAsFailed(): Result
     {
         return Result::make()->status(Status::Failed);
     }
 
-    public function toArray(): array
+    public function markAsSuccess(): Result
     {
-        return [];
-    }
-
-    public function toJson($options = 0): string
-    {
-        return json_encode($this->toArray(), $options);
+        return Result::make()->status(Status::Success);
     }
 
     public function __toString(): string
