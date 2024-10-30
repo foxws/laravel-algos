@@ -22,11 +22,11 @@ it('will determine that algo is success', function () {
 it('will succeed with message', function () {
     $algo = GenerateUserFeed::make()->model($this->user)->run();
 
-    expect($algo->message)->toBeString('Feed generated successfully');
+    expect($algo->message)->toBe('Feed generated successfully');
 });
 
 it('will succeed with meta data', function () {
     $algo = GenerateUserFeed::make()->model($this->user)->run();
 
-    expect($algo->meta['hash'])->toBeString('01HRDBNHHCKNW2AK4Z29SN82T9');
+    expect($algo->meta['hash'])->toBe('01HRDBNHHCKNW2AK4Z29SN82T9');
 });
