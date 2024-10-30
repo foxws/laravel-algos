@@ -13,4 +13,9 @@ class AlgosServiceProvider extends PackageServiceProvider
             ->name('laravel-algos')
             ->hasConfigFile();
     }
+
+    public function packageRegistered(): void
+    {
+        $this->app->bind(Algos::class);
+    }
 }
