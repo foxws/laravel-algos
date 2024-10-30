@@ -28,7 +28,7 @@ class MakeAlgo extends GeneratorCommand
     protected function getArguments(): array
     {
         return [
-            ['name', InputArgument::REQUIRED, 'The name of the workflow class.'],
+            ['name', InputArgument::REQUIRED, 'The name of the algo class.'],
         ];
     }
 }
