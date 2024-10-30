@@ -57,7 +57,7 @@ abstract class Algo implements Arrayable, Jsonable
 
         $baseName = class_basename(static::class);
 
-        return Str::of($baseName)->beforeLast('Check');
+        return Str::of($baseName)->beforeLast('Algo');
     }
 
     public function toArray(): array
