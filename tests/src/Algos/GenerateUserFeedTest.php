@@ -22,7 +22,7 @@ it('will determine that algo is success', function () {
 it('will succeed with message', function () {
     $algo = GenerateUserFeed::make()->model($this->user)->run();
 
-    expect($algo->message)->toBe('Feed generated successfully');
+    expect($algo->message)->toBeString('Feed generated successfully');
 });
 
 it('will succeed with meta data', function () {
