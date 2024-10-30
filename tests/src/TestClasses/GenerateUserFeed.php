@@ -17,7 +17,7 @@ class GenerateUserFeed extends Algo
 
         $key = $user->modelCache(
             $this->generateHash(),
-            $this->getCollection(),
+            (array) $this->getCollection(),
             now()->addMinutes(10)
         );
 
