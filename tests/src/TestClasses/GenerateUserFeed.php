@@ -29,7 +29,7 @@ class GenerateUserFeed extends Algo
         return $result->success();
     }
 
-    public function forUser(User $user): static
+    public function forUser(User $user): self
     {
         $this->user = $user;
 
