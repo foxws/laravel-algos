@@ -55,7 +55,7 @@ class Result
 
     public function meta(?array $meta = null): static
     {
-        $this->meta = $meta;
+        $this->meta = array_merge($this->meta ?? [], $meta);
 
         return $this;
     }
