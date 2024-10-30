@@ -3,10 +3,10 @@
 namespace Foxws\Algos\Algos;
 
 use Foxws\Algos\Enums\Status;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
+use stdClass;
 use Stringable;
 
 abstract class Algo implements Stringable
@@ -25,19 +25,19 @@ abstract class Algo implements Stringable
         return app(static::class);
     }
 
-    public static function run(): mixed
+    public function run(): mixed
     {
-        return static::make()->handle();
+        return $this->handle();
     }
 
-    public static function runIf(bool $boolean): mixed
+    public function runIf(bool $boolean): mixed
     {
-        return $boolean ? static::run() : new Fluent;
+        return $boolean ? $this->run() : new stdClass;
     }
 
-    public static function runUnless(bool $boolean): mixed
+    public function runUnless(bool $boolean): mixed
     {
-        return static::runIf(! $boolean);
+        return $this->runIf(! $boolean);
     }
 
     public function name(string $name): static
