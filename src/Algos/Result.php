@@ -34,6 +34,21 @@ class Result
         return $this;
     }
 
+    public function success(?string $message = null): static
+    {
+        return $this->status(Status::Success, $message);
+    }
+
+    public function failed(?string $message = null): static
+    {
+        return $this->status(Status::Failed, $message);
+    }
+
+    public function skipped(?string $message = null): static
+    {
+        return $this->status(Status::Skipped, $message);
+    }
+
     public function meta(?array $meta = null): static
     {
         $this->meta = $meta;
