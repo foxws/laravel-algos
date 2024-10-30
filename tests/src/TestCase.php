@@ -53,6 +53,7 @@ abstract class TestCase extends Orchestra
             $table->string('password');
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -63,6 +64,7 @@ abstract class TestCase extends Orchestra
             $table->string('title');
             $table->text('content')->nullable();
             $table->timestamp('published_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
