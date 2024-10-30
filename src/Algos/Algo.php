@@ -86,6 +86,11 @@ abstract class Algo implements Stringable
         return Result::make()->status(Status::Success);
     }
 
+    public function skipped(): Result
+    {
+        return Result::make()->status(Status::Skipped);
+    }
+
     public function __toString(): string
     {
         return $this->getName();
