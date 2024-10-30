@@ -16,10 +16,12 @@ class GenerateUserFeed extends Algo
 
     public function handle(): Result
     {
-        $hash = cache()->set(
-            $this->generateUniqueId(),
-            ['ids' => (array) $this->getCollection()],
-            now()->addMinutes(10),
+        $hash = $this->generateUniqueId();
+
+        cache()->set(
+            key: $hash,
+            value: ['ids' => (array) $this->getCollection()],
+            ttl: now()->addMinutes(10),
         );
 
         return $this
