@@ -3,7 +3,9 @@
 namespace Foxws\Algos;
 
 use Foxws\Algos\Algos\Algo;
+use Foxws\Algos\Exceptions\DuplicateAlgoNamesFound;
 use Illuminate\Support\Collection;
+use Spatie\Health\Exceptions\InvalidAlgo;
 
 class Algos
 {
