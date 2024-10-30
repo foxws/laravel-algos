@@ -10,6 +10,9 @@ use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Stringable;
 
+/**
+ * @method Result handle()
+ */
 abstract class Algo implements Arrayable, Jsonable, Stringable
 {
     use Conditionable { unless as doUnless; }
@@ -26,8 +29,6 @@ abstract class Algo implements Arrayable, Jsonable, Stringable
     {
         return app(static::class);
     }
-
-    abstract public function handle(): Result;
 
     public function run(mixed ...$arguments): Result
     {
