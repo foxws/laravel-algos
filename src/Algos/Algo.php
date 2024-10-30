@@ -76,12 +76,12 @@ abstract class Algo implements Stringable
         return Str::of($baseName)->beforeLast('Algo');
     }
 
-    public function markAsFailed(): Result
+    public function failed(): Result
     {
         return Result::make()->status(Status::Failed);
     }
 
-    public function markAsSuccess(): Result
+    public function succcess(): Result
     {
         return Result::make()->status(Status::Success);
     }

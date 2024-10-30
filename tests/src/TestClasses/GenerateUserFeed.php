@@ -15,15 +15,13 @@ class GenerateUserFeed extends Algo
 
     public function handle(): Result
     {
-        $result = Result::make();
-
         $hash = $this->user->modelCache(
             $this->generateUniqueId(),
             ['ids' => (array) $this->getCollection()],
             now()->addMinutes(10),
         );
 
-        return $result
+        return $this
             ->success('Feed generated successfully')
             ->with('hash', $hash);
     }
