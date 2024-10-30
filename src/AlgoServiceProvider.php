@@ -1,12 +1,12 @@
 <?php
 
-namespace Foxws\LaravelAlgos;
+namespace Foxws\Algos;
 
 use Foxws\LaravelAlgos\Commands\LaravelAlgosCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class LaravelAlgosServiceProvider extends PackageServiceProvider
+class AlgoServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
