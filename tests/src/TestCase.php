@@ -19,7 +19,6 @@ abstract class TestCase extends Orchestra
         parent::setUp();
 
         $this->setUpDatabase($this->app);
-        $this->seedModels($this->app);
     }
 
     protected function getEnvironmentSetUp($app)
@@ -68,11 +67,5 @@ abstract class TestCase extends Orchestra
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
-    }
-
-    protected function seedModels($app): void
-    {
-        $this->seed(UserSeeder::class);
-        $this->seed(PostSeeder::class);
     }
 }
