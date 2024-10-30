@@ -15,13 +15,13 @@ class GenerateUserFeed extends Algo
     {
         $result = Result::make();
 
-        $key = $user->modelCache(
-            $this->generateHash(),
+        $hash = $user->modelCache(
+            $this->generateUniqueId(),
             (array) $this->getCollection(),
             now()->addMinutes(10)
         );
 
-        $this->sendBroadcast($user, $key);
+        $this->sendBroadcast($user, $hash);
 
         return $result->success();
     }
@@ -35,7 +35,7 @@ class GenerateUserFeed extends Algo
             ->get();
     }
 
-    protected function generateHash(): string
+    protected function generateUniqueId(): string
     {
         return Str::ulid();
     }
