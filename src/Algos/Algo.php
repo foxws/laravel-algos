@@ -2,6 +2,7 @@
 
 namespace Foxws\Algos\Algos;
 
+use Foxws\Algos\Enums\Status;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Str;
@@ -59,6 +60,11 @@ abstract class Algo implements Arrayable, Jsonable, Stringable
         $baseName = class_basename(static::class);
 
         return Str::of($baseName)->beforeLast('Algo');
+    }
+
+    public function markAsFailed(): Result
+    {
+        return new Result(Status::Failed);
     }
 
     public function toArray(): array

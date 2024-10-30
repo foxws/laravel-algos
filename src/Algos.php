@@ -2,7 +2,12 @@
 
 namespace Foxws\Algos;
 
+use Exception;
 use Foxws\Algos\Algos\Algo;
+use Foxws\Algos\Algos\Result;
+use Foxws\Algos\Events\AlgoEndedEvent;
+use Foxws\Algos\Events\AlgoStartingEvent;
+use Foxws\Algos\Exceptions\AlgoDidNotComplete;
 use Foxws\Algos\Exceptions\DuplicateAlgoNamesFound;
 use Illuminate\Support\Collection;
 use Spatie\Health\Exceptions\InvalidAlgo;
@@ -22,6 +27,38 @@ class Algos
         $this->guardAgainstDuplicateAlgoNames();
 
         return $this;
+    }
+
+    public function runAlgo(Algo $algo): Result
+    {
+        event(new AlgoStartingEvent($algo));
+
+        try {
+            $result = $algo->run();
+        } catch (Exception $exception) {
+            $exception = AlgoDidNotComplete::make($algo, $exception);
+
+            report($exception);
+
+            $result = $algo->markAsFailed();
+        }
+
+        $result
+            ->algo($algo)
+            ->processed();
+
+        event(new AlgoEndedEvent($algo, $result));
+
+        return $result;
+    }
+
+    public function runAlgos(): Collection
+    {
+        return $this->registeredAlgos()
+            ->map(fn (Algo $algo): Result => $algo->shouldRun()
+                ? $this->runAlgo($algo)
+                : (new Result)->algo($algo)->skipped()->processed()
+            );
     }
 
     public function clearAlgos(): self

@@ -3,12 +3,15 @@
 namespace Foxws\Algos\Algos;
 
 use Foxws\Algos\Enums\Status;
+use Illuminate\Support\Carbon;
 
 class Result
 {
     public Algo $algo;
 
     public ?Status $status = null;
+
+    public ?Carbon $processed = null;
 
     public ?string $message = null;
 
@@ -53,6 +56,13 @@ class Result
     public function meta(?array $meta = null): static
     {
         $this->meta = $meta;
+
+        return $this;
+    }
+
+    public function processed(?Carbon $value = null): self
+    {
+        $this->processed = $value ?? now();
 
         return $this;
     }
