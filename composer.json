@@ -4,7 +4,9 @@
     "keywords": [
         "foxws",
         "laravel",
-        "laravel-algos"
+        "laravel-algos",
+        "algos",
+        "algorithms"
     ],
     "homepage": "https://github.com/foxws/laravel-algos",
     "license": "MIT",
@@ -17,8 +19,13 @@
     ],
     "require": {
         "php": "^8.2",
-        "spatie/laravel-package-tools": "^1.16",
-        "illuminate/contracts": "^10.0||^11.0"
+        "illuminate/cache": "^10.0|^11.0",
+        "illuminate/console": "^10.0|^11.0",
+        "illuminate/container": "^10.0|^11.0",
+        "illuminate/contracts": "^10.0||^11.0",
+        "illuminate/support": "^10.0|^11.0",
+        "nesbot/carbon": "^2.63|^3.0",
+        "spatie/laravel-package-tools": "^1.16"
     },
     "require-dev": {
         "laravel/pint": "^1.14",
@@ -35,13 +42,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Foxws\\LaravelAlgos\\": "src/",
-            "Foxws\\LaravelAlgos\\Database\\Factories\\": "database/factories/"
+            "Foxws\\Algos\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Foxws\\LaravelAlgos\\Tests\\": "tests/",
+            "Foxws\\Algos\\Tests\\": "tests/src/",
+            "Foxws\\Algos\\Tests\\Database\\Factories\\": "tests/database/factories/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -73,10 +80,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Foxws\\LaravelAlgos\\LaravelAlgosServiceProvider"
+                "Foxws\\Algos\\AlgosServiceProvider"
             ],
             "aliases": {
-                "LaravelAlgos": "Foxws\\LaravelAlgos\\Facades\\LaravelAlgos"
+                "Algos": "Foxws\\Algos\\Facades\\Algos"
             }
         }
     },
