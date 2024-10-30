@@ -12,8 +12,8 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory;
-    use Notifiable;
     use InteractsWithModelCache;
+    use Notifiable;
 
     protected $guarded = [];
 
