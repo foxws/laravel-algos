@@ -42,9 +42,6 @@ class GenerateUserFeed extends Algo
 
     protected function sendBroadcast(User $user, string $hash): void
     {
-        Broadcast::private('user.'.$user->getKey())
-            ->as('FeedGenerated')
-            ->with(['hash' => $hash])
-            ->sendNow();
+        Broadcast::broadcast(['user.'.$user->getKey()], 'FeedGenerated', ['hash' => $hash]);
     }
 }
