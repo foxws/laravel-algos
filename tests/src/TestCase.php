@@ -38,7 +38,6 @@ abstract class TestCase extends Orchestra
     {
         return [
             AlgoServiceProvider::class,
-            ModelCacheServiceProvider::class,
         ];
     }
 
