@@ -4,6 +4,7 @@ namespace Foxws\Algos\Tests\TestClasses;
 
 use Foxws\Algos\Algos\Algo;
 use Foxws\Algos\Algos\Result;
+use Foxws\Algos\Tests\Models\Post;
 use Foxws\Algos\Tests\Models\User;
 use Illuminate\Support\Collection;
 
@@ -27,6 +28,13 @@ class FakeCollectionAlgo extends Algo
     protected function getUsers(): Collection
     {
         return User::query()
+            ->take(5)
+            ->get();
+    }
+
+    protected function getPosts(): Collection
+    {
+        return Post::query()
             ->take(5)
             ->get();
     }
