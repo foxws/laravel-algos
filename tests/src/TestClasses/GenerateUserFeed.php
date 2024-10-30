@@ -7,7 +7,6 @@ use Foxws\Algos\Algos\Result;
 use Foxws\Algos\Tests\Models\Post;
 use Foxws\Algos\Tests\Models\User;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Str;
 
 class GenerateUserFeed extends Algo
@@ -23,8 +22,6 @@ class GenerateUserFeed extends Algo
             ['ids' => (array) $this->getCollection()],
             now()->addMinutes(10),
         );
-
-        $this->sendBroadcast($hash);
 
         return $result
             ->success('Feed generated successfully')
@@ -50,12 +47,5 @@ class GenerateUserFeed extends Algo
     protected function generateUniqueId(): string
     {
         return Str::ulid();
-    }
-
-    protected function sendBroadcast(string $hash): void
-    {
-        Broadcast::broadcast(['user.'.$this->user->getKey()], 'FeedGenerated', [
-            'hash' => $hash,
-        ]);
     }
 }
