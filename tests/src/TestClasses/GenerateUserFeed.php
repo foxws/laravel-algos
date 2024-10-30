@@ -17,7 +17,7 @@ class GenerateUserFeed extends Algo
 
         $hash = $user->modelCache(
             $this->generateUniqueId(),
-            (array) $this->getCollection(),
+            ['ids' => (array) $this->getCollection()],
             now()->addMinutes(10)
         );
 
