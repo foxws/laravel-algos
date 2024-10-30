@@ -7,8 +7,9 @@ use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
+use Stringable;
 
-abstract class Algo implements Arrayable, Jsonable
+abstract class Algo implements Arrayable, Jsonable, Stringable
 {
     use Conditionable;
     use Macroable;
@@ -58,6 +59,11 @@ abstract class Algo implements Arrayable, Jsonable
         $baseName = class_basename(static::class);
 
         return Str::of($baseName)->beforeLast('Algo');
+    }
+
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 
     public function toArray(): array
