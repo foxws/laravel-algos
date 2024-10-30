@@ -3,7 +3,6 @@
 namespace Foxws\Algos\Tests;
 
 use Foxws\Algos\AlgoServiceProvider;
-use Foxws\ModelCache\ModelCacheServiceProvider;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Concerns\WithWorkbench;
