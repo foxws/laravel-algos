@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Str;
 
-class CreateUserFeed extends Algo
+class GenerateUserFeed extends Algo
 {
     public function handle(User $user): Result
     {
