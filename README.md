@@ -23,7 +23,7 @@ php artisan vendor:publish --tag="algos-config"
 
 ## Usage
 
-Generate an `Algo` class (you may also use `artisan make:algo MyAlgo`:
+Generate an `Algo` class (you may also use `php artisan make:algo MyAlgo`):
 
 ```php
 use Foxws\Algos\Algos\Algo;
@@ -83,7 +83,7 @@ $algo = GenerateUserFeed::make()->model($this->user)->run();
 
 // $algo->status; // success, failed, skipped
 // $algo->message; // reason
-// $algo->meta['foo'] // array of metadata
+// $algo->meta; // array of metadata
 ```
 
 ## Testing
