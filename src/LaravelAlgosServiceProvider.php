@@ -2,9 +2,9 @@
 
 namespace Foxws\LaravelAlgos;
 
+use Foxws\LaravelAlgos\Commands\LaravelAlgosCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Foxws\LaravelAlgos\Commands\LaravelAlgosCommand;
 
 class LaravelAlgosServiceProvider extends PackageServiceProvider
 {

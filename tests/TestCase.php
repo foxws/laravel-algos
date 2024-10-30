@@ -2,9 +2,9 @@
 
 namespace Foxws\LaravelAlgos\Tests;
 
+use Foxws\LaravelAlgos\LaravelAlgosServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Foxws\LaravelAlgos\LaravelAlgosServiceProvider;
 
 class TestCase extends Orchestra
 {
