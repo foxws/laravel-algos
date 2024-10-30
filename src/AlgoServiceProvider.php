@@ -2,6 +2,7 @@
 
 namespace Foxws\Algos;
 
+use Foxws\LaravelAlgos\Commands\MakeAlgo;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -11,7 +12,10 @@ class AlgoServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('laravel-algos')
-            ->hasConfigFile('algos');
+            ->hasConfigFile('algos')
+            ->hasCommands([
+                MakeAlgo::class,
+            ]);
     }
 
     public function packageRegistered(): void

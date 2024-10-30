@@ -5,13 +5,13 @@ namespace Foxws\LaravelAlgos\Commands;
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputArgument;
 
-class MakeWorkflow extends GeneratorCommand
+class MakeAlgo extends GeneratorCommand
 {
     protected $name = 'make:algo';
 
     protected $description = 'Create a new algo class';
 
-    protected $type = 'Action';
+    protected $type = 'Algo';
 
     protected function getStub(): string
     {
