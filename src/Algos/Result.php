@@ -29,6 +29,7 @@ class Result
     public function status(Status $status, ?string $message = null): static
     {
         $this->status = $status;
+
         $this->message = $message;
 
         return $this;
