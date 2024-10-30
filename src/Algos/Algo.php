@@ -81,7 +81,7 @@ abstract class Algo implements Stringable
         return Result::make()->status(Status::Failed);
     }
 
-    public function succcess(): Result
+    public function success(): Result
     {
         return Result::make()->status(Status::Success);
     }
