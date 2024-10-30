@@ -79,7 +79,7 @@ class GenerateUserFeed extends Algo
 To run the algorithm:
 
 ```php
-$algo = GenerateUserFeed::make()->model($this->user)->run();
+$algo = GenerateUserFeed::make()->model($user)->run();
 
 // $algo->status; // success, failed, skipped
 // $algo->message; // reason
