@@ -3,7 +3,6 @@
 namespace Foxws\Algos\Algos;
 
 use Foxws\Algos\Enums\Status;
-use Illuminate\Support\Carbon;
 
 class Result
 {
@@ -11,11 +10,9 @@ class Result
 
     public ?Status $status = null;
 
-    public ?Carbon $processed = null;
-
     public ?string $message = null;
 
-    public ?array $meta = null;
+    public array $meta = [];
 
     public static function make(): static
     {
@@ -53,16 +50,9 @@ class Result
         return $this->status(Status::Skipped, $message);
     }
 
-    public function meta(?array $meta = null): static
+    public function with(string $key, mixed $value = null): static
     {
-        $this->meta = array_merge($this->meta ?? [], $meta);
-
-        return $this;
-    }
-
-    public function processed(?Carbon $value = null): self
-    {
-        $this->processed = $value ?? now();
+        $this->meta[$key] = $value;
 
         return $this;
     }
