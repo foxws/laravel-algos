@@ -3,6 +3,7 @@
 namespace Foxws\Algos\Tests;
 
 use Foxws\Algos\AlgosServiceProvider;
+use Foxws\ModelCache\ModelCacheServiceProvider;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Concerns\WithWorkbench;
@@ -35,6 +36,7 @@ abstract class TestCase extends Orchestra
     {
         return [
             AlgosServiceProvider::class,
+            ModelCacheServiceProvider::class,
         ];
     }
 
