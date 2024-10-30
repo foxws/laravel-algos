@@ -1,19 +1,11 @@
-# This is my package laravel-algos
+# Laravel Algos
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/foxws/laravel-algos.svg?style=flat-square)](https://packagist.org/packages/foxws/laravel-algos)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/foxws/laravel-algos/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/foxws/laravel-algos/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/foxws/laravel-algos/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/foxws/laravel-algos/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/foxws/laravel-algos.svg?style=flat-square)](https://packagist.org/packages/foxws/laravel-algos)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-algos.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-algos)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+This package can be used to create algorithms (algos) for your Laravel application.
 
 ## Installation
 
@@ -23,37 +15,75 @@ You can install the package via composer:
 composer require foxws/laravel-algos
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-algos-migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-algos-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-algos-views"
+php artisan vendor:publish --tag="algos-config"
 ```
 
 ## Usage
 
+Generate an `Algo` class:
+
 ```php
-$laravelAlgos = new Foxws\LaravelAlgos();
-echo $laravelAlgos->echoPhrase('Hello, Foxws!');
+<?php
+
+use Foxws\Algos\Algos\Algo;
+use Foxws\Algos\Algos\Result;
+use Foxws\Algos\Tests\Models\Post;
+use Foxws\Algos\Tests\Models\User;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+
+class GenerateUserFeed extends Algo
+{
+    protected ?User $user = null;
+
+    public function handle(): Result
+    {
+        $hash = cache()->set(
+            $this->generateUniqueId(),
+            ['ids' => (array) $this->getCollection()],
+            now()->addMinutes(10),
+        );
+
+        return $this
+            ->success('Feed generated successfully')
+            ->with('hash', $hash);
+    }
+
+    public function model(User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    protected function getCollection(): Collection
+    {
+        return Post::query()
+            ->select('id')
+            ->where('user_id', $this->user->getKey())
+            ->inRandomOrder()
+            ->take(5)
+            ->get();
+    }
+
+    protected function generateUniqueId(): string
+    {
+        return Str::ulid();
+    }
+}
+```
+
+To run the algorithm:
+
+```php
+$algo = GenerateUserFeed::make()->model($this->user)->run();
+
+// $algo->status; // success, failed, skipped
+// $algo->message; // reason
+// $algo->meta['foo'] // array of metadata
 ```
 
 ## Testing
