@@ -14,7 +14,7 @@ beforeEach(function () {
 });
 
 it('will determine that algo is success', function () {
-    $algo = GenerateUserFeed::make()->forUser($this->user)->run();
+    $algo = GenerateUserFeed::make()->forUser($this->user);
 
-    expect($algo)->toBe(Status::Success);
+    expect($algo->run())->toBe(Status::Success);
 });
