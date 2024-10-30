@@ -76,19 +76,19 @@ abstract class Algo implements Stringable
         return Str::of($baseName)->beforeLast('Algo');
     }
 
-    public function failed(): Result
+    public function failed(?string $message = null): Result
     {
-        return Result::make()->status(Status::Failed);
+        return Result::make()->status(Status::Failed, $message);
     }
 
-    public function success(): Result
+    public function success(?string $message = null): Result
     {
-        return Result::make()->status(Status::Success);
+        return Result::make()->status(Status::Success, $message);
     }
 
-    public function skipped(): Result
+    public function skipped(?string $message = null): Result
     {
-        return Result::make()->status(Status::Skipped);
+        return Result::make()->status(Status::Skipped, $message);
     }
 
     public function __toString(): string
