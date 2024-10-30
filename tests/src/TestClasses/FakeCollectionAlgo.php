@@ -14,7 +14,7 @@ class FakeCollectionAlgo extends Algo
 
     protected ?Collection $posts = null;
 
-    public function run(): Result
+    public function handle(): Result
     {
         $result = Result::make();
 

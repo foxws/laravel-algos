@@ -27,7 +27,12 @@ abstract class Algo implements Arrayable, Jsonable, Stringable
         return app(static::class);
     }
 
-    abstract public function run(): Result;
+    abstract public function handle(): Result;
+
+    public function run(mixed ...$arguments): Result
+    {
+        return $this->handle(...$arguments);
+    }
 
     public function name(string $name): static
     {
