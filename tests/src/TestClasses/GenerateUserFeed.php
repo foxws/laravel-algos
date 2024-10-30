@@ -45,8 +45,10 @@ class GenerateUserFeed extends Algo
 
     protected function generateUniqueId(): string
     {
-        return Str::createUlidsUsing(function () {
+        Str::createUlidsUsing(function () {
             return new Ulid('01HRDBNHHCKNW2AK4Z29SN82T9');
         });
+
+        return Str::ulid();
     }
 }
