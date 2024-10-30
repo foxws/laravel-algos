@@ -99,7 +99,7 @@ abstract class Algo implements Arrayable, Jsonable, Stringable
 
     public function markAsFailed(): Result
     {
-        return new Result(Status::Failed);
+        return Result::make()->status(Status::Failed);
     }
 
     public function toArray(): array

@@ -57,7 +57,7 @@ class Algos
         return $this->registeredAlgos()
             ->map(fn (Algo $algo): Result => $algo->shouldRun()
                 ? $this->runAlgo($algo)
-                : (new Result)->algo($algo)->skipped()->processed()
+                : Result::make()->algo($algo)->skipped()->processed()
             );
     }
 
