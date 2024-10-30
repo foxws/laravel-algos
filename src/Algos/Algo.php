@@ -12,12 +12,15 @@ use Stringable;
 
 abstract class Algo implements Arrayable, Jsonable, Stringable
 {
-    use Conditionable;
+    use Conditionable { unless as doUnless; }
     use Macroable;
 
     protected ?string $name = null;
 
     protected ?string $label = null;
+
+    /** @var array<bool|callable(): bool> */
+    protected array $shouldRun = [];
 
     public static function make(): static
     {
@@ -60,6 +63,38 @@ abstract class Algo implements Arrayable, Jsonable, Stringable
         $baseName = class_basename(static::class);
 
         return Str::of($baseName)->beforeLast('Algo');
+    }
+
+    public function getRunConditions(): array
+    {
+        return $this->shouldRun;
+    }
+
+    public function shouldRun(): bool
+    {
+        foreach ($this->shouldRun as $shouldRun) {
+            $shouldRun = is_callable($shouldRun) ? $shouldRun() : $shouldRun;
+
+            if (! $shouldRun) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public function if(bool|callable $condition): static
+    {
+        $this->shouldRun[] = $condition;
+
+        return $this;
+    }
+
+    public function unless(bool|callable $condition): static
+    {
+        $this->shouldRun[] = is_callable($condition) ? fn () => ! $condition() : ! $condition;
+
+        return $this;
     }
 
     public function markAsFailed(): Result
