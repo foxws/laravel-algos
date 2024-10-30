@@ -8,7 +8,7 @@ use Foxws\Algos\Algos\Result;
 class AlgoEndedEvent
 {
     public function __construct(
-        public Algo $check,
+        public Algo $algo,
         public Result $result,
     ) {}
 }

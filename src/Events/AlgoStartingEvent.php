@@ -7,6 +7,6 @@ use Foxws\Algos\Algos\Algo;
 class AlgoStartingEvent
 {
     public function __construct(
-        public Algo $check,
+        public Algo $algo,
     ) {}
 }
