@@ -3,8 +3,6 @@
 namespace Foxws\Algos\Tests;
 
 use Foxws\Algos\AlgosServiceProvider;
-use Foxws\Algos\Tests\Database\Seeders\PostSeeder;
-use Foxws\Algos\Tests\Database\Seeders\UserSeeder;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Concerns\WithWorkbench;
