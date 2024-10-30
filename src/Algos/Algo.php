@@ -2,11 +2,13 @@
 
 namespace Foxws\Algos\Algos;
 
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 
-abstract class Algo
+abstract class Algo implements Arrayable, Jsonable
 {
     use Conditionable;
     use Macroable;
@@ -56,5 +58,15 @@ abstract class Algo
         $baseName = class_basename(static::class);
 
         return Str::of($baseName)->beforeLast('Check');
+    }
+
+    public function toArray(): array
+    {
+        return [];
+    }
+
+    public function toJson($options = 0): string
+    {
+        return json_encode($this->toArray(), $options);
     }
 }
