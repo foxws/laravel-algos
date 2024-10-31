@@ -5,6 +5,7 @@
         "foxws",
         "laravel",
         "laravel-algos",
+        "algo",
         "algos",
         "algorithms"
     ],
@@ -19,7 +20,6 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/cache": "^10.0|^11.0",
         "illuminate/console": "^10.0|^11.0",
         "illuminate/container": "^10.0|^11.0",
         "illuminate/contracts": "^10.0||^11.0",
@@ -79,10 +79,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Foxws\\Algos\\AlgosServiceProvider"
+                "Foxws\\Algos\\AlgoServiceProvider"
             ],
             "aliases": {
-                "Algos": "Foxws\\Algos\\Facades\\Algos"
+                "Algos": "Foxws\\Algos\\Facades\\Algo"
             }
         }
     },
