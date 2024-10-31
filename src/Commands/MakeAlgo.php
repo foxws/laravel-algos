@@ -1,6 +1,6 @@
 <?php
 
-namespace Foxws\LaravelAlgos\Commands;
+namespace Foxws\Algos\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputArgument;

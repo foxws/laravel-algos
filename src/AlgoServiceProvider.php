@@ -2,7 +2,7 @@
 
 namespace Foxws\Algos;
 
-use Foxws\LaravelAlgos\Commands\MakeAlgo;
+use Foxws\Algos\Commands\MakeAlgo;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

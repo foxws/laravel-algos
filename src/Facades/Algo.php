@@ -1,6 +1,6 @@
 <?php
 
-namespace Foxws\LaravelAlgos\Facades;
+namespace Foxws\Algos\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
