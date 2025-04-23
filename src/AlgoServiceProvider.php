@@ -12,7 +12,6 @@ class AlgoServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('laravel-algos')
-            ->hasConfigFile('algos')
             ->hasCommands([
                 MakeAlgo::class,
             ]);
