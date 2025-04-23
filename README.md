@@ -15,12 +15,6 @@ You can install the package via composer:
 composer require foxws/laravel-algos
 ```
 
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="algos-config"
-```
-
 ## Usage
 
 Generate an `Algo` class (you may also use `php artisan make:algo MyAlgo`):
