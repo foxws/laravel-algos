@@ -77,7 +77,7 @@ class Result implements Arrayable, Jsonable
 
     public function toFluent(): Fluent
     {
-        return new Fluent($this->toArray());
+        return Fluent::make($this->toArray());
     }
 
     public function toArray(): array
