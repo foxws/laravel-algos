@@ -5,6 +5,7 @@ namespace Foxws\Algos\Algos;
 use Foxws\Algos\Enums\Status;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Support\Fluent;
 use Illuminate\Support\Traits\Macroable;
 
 class Result implements Arrayable, Jsonable
@@ -72,6 +73,11 @@ class Result implements Arrayable, Jsonable
     public function toJson($options = 0): string
     {
         return json_encode($this->toArray(), $options);
+    }
+
+    public function toFluent(): Fluent
+    {
+        return new Fluent($this->toArray());
     }
 
     public function toArray(): array
