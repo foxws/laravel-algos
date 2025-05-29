@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-algos` will be documented in this file.
 
+## 0.2.0 - 2025-05-29
+
+### What's Changed
+
+* Add `get` method to Result
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot in https://github.com/foxws/laravel-algos/pull/5
+
+**Full Changelog**: https://github.com/foxws/laravel-algos/compare/0.1.0...0.2.0
+
 ## 0.1.0 - 2025-04-23
 
 ### What's Changed
