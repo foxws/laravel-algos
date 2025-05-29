@@ -63,6 +63,11 @@ class Result implements Arrayable, Jsonable
         return $this;
     }
 
+    public function get(string $key, mixed $default = null): mixed
+    {
+        return $this->meta[$key] ?? $default;
+    }
+
     public function merge(array $meta): static
     {
         $this->meta = array_merge_recursive($this->meta, $meta);
