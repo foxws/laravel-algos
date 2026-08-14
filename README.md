@@ -7,6 +7,8 @@
 
 This package can be used to create algorithms (algos) for your Laravel application.
 
+See the [full documentation](https://foxws.github.io/laravel-algos/) (or browse [`docs/`](docs) directly): [Installation](docs/installation.md), [Usage](docs/usage.md).
+
 ## Installation
 
 You can install the package via composer:
