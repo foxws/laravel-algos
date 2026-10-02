@@ -2,6 +2,27 @@
 
 All notable changes to `laravel-algos` will be documented in this file.
 
+## 0.3.1 - 2026-10-02
+
+### What's Changed
+
+* Bump actions/checkout from 4 to 6 by @dependabot[bot] in https://github.com/foxws/laravel-algos/pull/10
+* Bump actions/checkout from 4 to 6 by @dependabot[bot] in https://github.com/foxws/laravel-algos/pull/13
+* Bump dependabot/fetch-metadata from 2.5.0 to 3.0.0 by @dependabot[bot] in https://github.com/foxws/laravel-algos/pull/14
+* Bump dependabot/fetch-metadata from 3.0.0 to 3.1.0 by @dependabot[bot] in https://github.com/foxws/laravel-algos/pull/15
+* Add Docusaurus documentation site by @francoism90 in https://github.com/foxws/laravel-algos/pull/17
+* Bump actions/checkout from 6 to 7 by @dependabot[bot] in https://github.com/foxws/laravel-algos/pull/16
+* Bump actions/checkout from 4 to 7 by @dependabot[bot] in https://github.com/foxws/laravel-algos/pull/22
+* Bump actions/upload-pages-artifact from 3 to 5 by @dependabot[bot] in https://github.com/foxws/laravel-algos/pull/21
+* Bump actions/deploy-pages from 4 to 5 by @dependabot[bot] in https://github.com/foxws/laravel-algos/pull/20
+* Bump pnpm/action-setup from 4 to 6 by @dependabot[bot] in https://github.com/foxws/laravel-algos/pull/19
+* Bump actions/setup-node from 4 to 7 by @dependabot[bot] in https://github.com/foxws/laravel-algos/pull/18
+* Bump react from 19.2.8 to 19.3.0 in /website by @dependabot[bot] in https://github.com/foxws/laravel-algos/pull/23
+* Bump react-dom from 19.2.8 to 19.3.0 in /website by @dependabot[bot] in https://github.com/foxws/laravel-algos/pull/24
+* Raise PHPStan to level 8, and fail on result JSON errors by @francoism90 in https://github.com/foxws/laravel-algos/pull/25
+
+**Full Changelog**: https://github.com/foxws/laravel-algos/compare/0.3.0...0.3.1
+
 ## 0.3.0 - 2026-03-17
 
 ### What's Changed
