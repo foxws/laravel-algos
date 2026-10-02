@@ -8,6 +8,9 @@ use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Traits\Macroable;
 
+/**
+ * @implements Arrayable<string, mixed>
+ */
 class Result implements Arrayable, Jsonable
 {
     use Macroable;
@@ -18,6 +21,7 @@ class Result implements Arrayable, Jsonable
 
     public ?string $message = null;
 
+    /** @var array<string, mixed> */
     public array $meta = [];
 
     public static function make(): static
@@ -68,6 +72,9 @@ class Result implements Arrayable, Jsonable
         return $this->meta[$key] ?? $default;
     }
 
+    /**
+     * @param  array<string, mixed>  $meta
+     */
     public function merge(array $meta): static
     {
         $this->meta = array_merge_recursive($this->meta, $meta);
@@ -77,14 +84,20 @@ class Result implements Arrayable, Jsonable
 
     public function toJson($options = 0): string
     {
-        return json_encode($this->toArray(), $options);
+        return json_encode($this->toArray(), $options | JSON_THROW_ON_ERROR);
     }
 
+    /**
+     * @return Fluent<string, mixed>
+     */
     public function toFluent(): Fluent
     {
         return Fluent::make($this->toArray());
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         return [
