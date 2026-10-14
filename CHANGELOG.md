@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-algos` will be documented in this file.
 
+## 0.3.2 - 2026-10-14
+
+### What's Changed
+
+* Add Laravel Boost skill and tip by @francoism90 in https://github.com/foxws/laravel-algos/pull/26
+
+**Full Changelog**: https://github.com/foxws/laravel-algos/compare/0.3.1...0.3.2
+
 ## 0.3.1 - 2026-10-02
 
 ### What's Changed
